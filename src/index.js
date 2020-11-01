@@ -7,9 +7,6 @@ app.get('/', (req, res) => {
     res.send('Welcome')
 })
 
-app.get('/home', (req, res) => {
-    res.send('Home page')
-})
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
