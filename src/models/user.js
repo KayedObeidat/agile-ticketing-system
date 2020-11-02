@@ -10,15 +10,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim:true
     },
-    jobTitle: {
-        type: String,
-        required: true,
-        validate(value){
-            if(!value.equals('reporter') || !value.equals('team member')){
-                throw new Error('You have to be reporter or a team member to access this site!')
-            }
-        }
-    },
     email: {
         type: String,
         unique: true,
