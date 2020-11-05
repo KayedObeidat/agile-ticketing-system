@@ -1,8 +1,9 @@
 const { expect } = require('chai')
 const request = require('supertest')
+const { response } = require('../src/app')
 const app = require('../src/app')
 const User = require('../src/models/user')
-const {userOneId, userOne, setupDatabase} = require('./fixtures/db')
+const {userOneId, userOne, setupDatabase, userTwoId} = require('./fixtures/db')
 
 beforeEach(setupDatabase)
 
@@ -31,7 +32,14 @@ test('Should get all users', async() => {
             .expect(200)
 })
 
-
+test('Should update user', async() => {
+        await request(app)
+            .patch(`/users/update/${userOneId}`)
+            .send({ name: 'kayed' })
+            .expect(200)
+            const user = await User.findById(userOneId)
+            expect(user.name).equal('kayed')
+})
 
 
 
