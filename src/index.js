@@ -1,9 +1,10 @@
 const express = require('express')
 require('./dataBase/mongoose')
-
-const app = express()
+const User = require('./models/user')
+const userRouter = require('./routes/user')
 
 const port = process.env.PORT
+
 
 app.get('/', (req, res) => {
     res.send('Welcome')
@@ -13,4 +14,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 })
+
 
