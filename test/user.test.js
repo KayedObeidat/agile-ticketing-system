@@ -1,6 +1,5 @@
 const { expect } = require('chai')
 const request = require('supertest')
-const { response } = require('../src/app')
 const app = require('../src/app')
 const User = require('../src/models/user')
 const {userOneId, userOne, setupDatabase, userTwoId} = require('./fixtures/db')
@@ -37,7 +36,7 @@ test('Should update user', async() => {
             .patch(`/users/update/${userOneId}`)
             .send({ name: 'kayed' })
             .expect(200)
-            const user = await User.findById(userOneId)
+            const user = await User.findByIdAndUpdate(userOneId)
             expect(user.name).equal('kayed')
 })
 
