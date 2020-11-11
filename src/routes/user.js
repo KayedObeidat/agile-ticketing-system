@@ -28,34 +28,6 @@ router.get('/users/:id', async(req, res) => {
     }
 })
 
-// router.patch('/users/update/:id', async(req, res) => {
-//      const updates = Object.keys(req.body)
-//      const allwoedUpdates = ['name', 'password', 'age']
-//      const isValidOperation = updates.every((update) => {
-//          return allwoedUpdates.includes(update)
-//      })
-
-//      if(!isValidOperation){
-//          return res.status(400).send({Error: 'Invalid Updates'})
-//      }
-
-//      try{
-//          const user = await User.findByIdAndUpdate(req.params.id)
-//             updates.forEach((update) => {
-//                     user[update] = req.body[update]
-//                 })
-//                 await user.save()
-//                 if(!user){
-//                     res.status(404).send()
-//                 }
-//                 res.send(user)
-//              }catch(e){
-//                 res.status(400).send(e)
-//              }
-//      }
-
-// )
-
 router.patch('/users/update/:id', async(req, res) => {
     const updates = Object.keys(req.body)
     const allwoedUpdates = ['name', 'password', 'age']
