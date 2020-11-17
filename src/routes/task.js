@@ -1,36 +1,36 @@
 const express = require('express')
+const Task = require('../models/task')
 const router = new express.Router()
-const User = require('../models/user')
 const mongoose = require('mongoose')
 const validator = require('validator')
-const services = require('../services/user')
+const services = require('../services/task')
 const { body, validationResult } = require('express-validator')
 const validation = require('../validation/validation')
 
-router.post('/users', 
-    validation.validate('createUser'),
-    services.createUser
+router.post('/tasks',
+    validation.validTask('createTask'),
+    services.createTask
 )
 
-router.get('/users',
-    services.readUsers
+router.get('/tasks',
+    services.readTasks
 )
 
-router.get('/users/:id', async(req, res) => {
+router.get('/tasks/:id', async(req, res) => {
     try{
-        const user = await User.findById(req.params.id)
-        if(!user){
+        const task = await Task.findById(req.params.id)
+        if(!task){
             res.status(404).send()
         }
-        res.status(200).send(user)
+        res.status(200).send(task)
     }catch(e){
         res.status(400).send(e)
     }
 })
 
-router.patch('/users/update/:id', async(req, res) => {
+router.patch('/tasks/update/:id', async(req, res) => {
     const updates = Object.keys(req.body)
-    const allwoedUpdates = ['name', 'password', 'age']
+    const allwoedUpdates = ['title', 'description', 'status']
     const isValidOperation = updates.every((update) => {
         return allwoedUpdates.includes(update)
     })
@@ -40,15 +40,15 @@ router.patch('/users/update/:id', async(req, res) => {
     }
 
     try{
-       const user = await User.findById(req.params.id)
+       const task = await Task.findById(req.params.id)
        updates.forEach((update) => {
-        user[update] = req.body[update]
+        task[update] = req.body[update]
     })
-    await user.save()
-    if(!user){
+    await task.save()
+    if(!task){
         res.status(404).send()
     }
-    res.send(user)
+    res.send(task)
  }catch(e){
     res.status(400).send(e)
  }

@@ -15,19 +15,13 @@ const taskSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: true,
-        validate(value){
-            if(value>100 || value<0){
-                throw new Error('Please enter your task progress out of 100')
-            }
-        }
-        
+        required: true,        
     },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Project'
-    },
+    // owner: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //     ref: 'Project'
+    // },
     isReporter:{
         type: Boolean,
         required:true
