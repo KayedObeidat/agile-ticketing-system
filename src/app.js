@@ -5,7 +5,7 @@ const Project = require('./models/project')
 const Task = require('./models/task')
 const userRouter = require('./routes/user')
 const projectRouter = require('./routes/project')
-const taskProject = require('./routes/task')
+const taskProject = require('./routes/task/index')
 
 
 const app = express()
