@@ -13,8 +13,8 @@ exports.createTask = (req, res) => {
         title: req.body.title,
         description: req.body.description,
         status: req.body.status,
-        isReporter: req.body.isReporter,
-        isCreator: req.body.isCreator
+        creator: req.body.creator,
+        assignee: req.body.assignee
     }).then(task => res.status(201).json(task))
 }
 

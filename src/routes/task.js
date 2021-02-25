@@ -30,7 +30,7 @@ router.get('/tasks/:id', async(req, res) => {
 
 router.patch('/tasks/update/:id', async(req, res) => {
     const updates = Object.keys(req.body)
-    const allwoedUpdates = ['title', 'description', 'status']
+    const allwoedUpdates = ['title', 'description', 'status', 'assignee']
     const isValidOperation = updates.every((update) => {
         return allwoedUpdates.includes(update)
     })

@@ -33,9 +33,10 @@ exports.validTask = (method) => {
     case 'createTask': {
       return [
         body('title', 'title does not exists').exists(),
-        body('description', 'description does not exists').exists(),
-        body('isReporter', 'isReporter does not exists').exists().isBoolean(),
-        body('isCreator', 'isCreator does not exists').exists().isBoolean()
+        body('creator', 'creator does not exists').exists(),
+        body('status', 'status does not exists').exists()
+        // body('isReporter', 'isReporter does not exists').exists().isBoolean(),
+        // body('isCreator', 'isCreator does not exists').exists().isBoolean()
       ]
     }
   }
