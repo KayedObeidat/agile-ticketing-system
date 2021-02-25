@@ -10,15 +10,25 @@ const validation = require("../../validation/validation");
 const router = new express.Router();
 
 
-router.post('/tasks',()=>{
-    try {
-        validation.validTask('createTask'),
+router.post('/tasks', 
+    validation.validTask('createTask'),
     services.createTask
-    } catch (err) {
-        console.log(err)
-    }
-}
-    
 )
+
+router.get('/tasks',
+    services.readTasks
+)
+
+router.get('/tasks/:id', async(req, res) => {
+    try{
+        const task = await Task.findById(req.params.id)
+        if(!task){
+            res.status(404).send()
+        }
+        res.status(200).send(task)
+    }catch(e){
+        res.status(400).send(e)
+    }
+})
 
 module.exports = router
