@@ -6,12 +6,17 @@ const services = require('./services')
 const { body, validationResult } = require('express-validator')
 const validation = require('../../validation/validation')
 
+// Daoud added code
+const addProjectController = require('./addPorject');
+
 const router = new express.Router()
 
-router.post('/project', 
-    validation.validateProject('createProject'),
-    services.createProject
-)
+router.post(
+  '/project',
+  validation.validateProject('createProject'),
+  addProjectController,
+  // services.createProject
+);
 
 router.get('/project', 
     services.readProjects
