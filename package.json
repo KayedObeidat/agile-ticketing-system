@@ -30,6 +30,7 @@
     "validator": "^13.1.17"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.10.3",
     "env-cmd": "^8.0.2",
     "jest": "^26.6.2",
     "nodemon": "^2.0.6",

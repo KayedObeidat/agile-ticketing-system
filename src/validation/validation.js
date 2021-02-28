@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const Project = require('../models/project')
+const Task = require('../models/task')
 const mongoose = require('mongoose')
 const validator = require('validator')
 
@@ -35,8 +36,6 @@ exports.validTask = (method) => {
         body('title', 'title does not exists').exists(),
         body('creator', 'creator does not exists').exists(),
         body('status', 'status does not exists').exists()
-        // body('isReporter', 'isReporter does not exists').exists().isBoolean(),
-        // body('isCreator', 'isCreator does not exists').exists().isBoolean()
       ]
     }
   }

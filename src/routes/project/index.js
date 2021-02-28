@@ -1,11 +1,12 @@
 const express = require('express')
-const Project = require('../models/project')
-const router = new express.Router()
+const Project = require('../../models/project')
 const mongoose = require('mongoose')
 const validator = require('validator')
-const services = require('../services/project')
+const services = require('./services')
 const { body, validationResult } = require('express-validator')
-const validation = require('../validation/validation')
+const validation = require('../../validation/validation')
+
+const router = new express.Router()
 
 router.post('/project', 
     validation.validateProject('createProject'),

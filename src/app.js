@@ -3,15 +3,15 @@ require('./dataBase/mongoose')
 const User = require('./models/user')
 const Project = require('./models/project')
 const Task = require('./models/task')
-const userRouter = require('./routes/user')
-const projectRouter = require('./routes/project')
-const taskProject = require('./routes/task/index')
-
+const projectRouter = require('./routes/project/index')
+const taskRouter = require('./routes/task/index')
+const userRouter = require('./routes/user/index')
 
 const app = express()
+
 app.use(express.json())
 app.use(userRouter)
 app.use(projectRouter)
-app.use(taskProject)
+app.use(taskRouter)
 
 module.exports = app

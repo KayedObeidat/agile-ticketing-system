@@ -2,24 +2,26 @@ const Task = require('../../models/task')
 const mongoose = require('mongoose')
 const validator = require('validator')
 const { body, validationResult } = require('express-validator')
+const mongoServer = require('./mongoServer')
 
 
 exports.createTask = (req, res) => {
     try{
         const errors = validationResult(req)
-    if(!errors.isEmpty()){
-        return res.status(400).json({ errors: errors.array() })
-    }
-    Task.create({
-        title: req.body.title,
-        description: req.body.description,
-        status: req.body.status,
-        creator: req.body.creator,
-        assignee: req.body.assignee
-    }).then(task => res.status(201).json(task))
+        if(!errors.isEmpty()){
+            return res.status(400).json({ errors: errors.array() })
+        }
+        Task.create({
+            title: req.body.title,
+            description: req.body.description,
+            status: req.body.status,
+            creator: req.body.creator,
+            assignee: req.body.assignee
+        }).then(task => res.status(201).json(task))
     }
     catch(err){
-        res.status(400).send(err)
+        throw new Error ("check your inputs")
+        console.error(err.message)
     }
 }
 exports.readTasks = (req, res) => {

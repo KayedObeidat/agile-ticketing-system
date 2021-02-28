@@ -1,4 +1,4 @@
-const Project = require('../models/project')
+const Project = require('../../models/project')
 const mongoose = require('mongoose')
 const validator = require('validator')
 const { body, validationResult } = require('express-validator')
