@@ -32,9 +32,9 @@ exports.readProject = async (projectId) => {
   }
 }
 
-exports.editProject = async ({ id, completed}) => {
+exports.editProject = async ({ id, ...body}) => {
   try {
-    const task = await Project.findByIdAndUpdate(id, {completed})
+    const task = await Project.findByIdAndUpdate(id, {...body})
     console.log(task)
     return task
   } catch (error) {
@@ -79,9 +79,9 @@ exports.readTask = async (taskId) => {
   }
 }
 
-exports.editTask = async ({ id, title, description, status, assignee}) => {
+exports.editTask = async ({ id, ...body}) => {
   try {
-    const task = await Task.findByIdAndUpdate(id, {title, description, status, assignee})
+    const task = await Task.findByIdAndUpdate(id, {...body})
     console.log(task)
     return task
   } catch (error) {
@@ -125,9 +125,9 @@ exports.readUser = async (userId) => {
   }
 }
 
-exports.editUser = async ({ id, name, email, password, age}) => {
+exports.editUser = async ({ id, ...body}) => {
   try {
-    const user = await User.findByIdAndUpdate(id, {name, email, password, age})
+    const user = await User.findByIdAndUpdate(id, {...body})
     console.log(user)
     return user
   } catch (error) {

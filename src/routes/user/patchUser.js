@@ -9,10 +9,7 @@ const {updateUser} = require('../../services/userService')
          }
          const data = {
              id: req.params.id,
-             name: req.body.name,
-             email: req.body.email,
-             password: req.body.password,
-             age: req.body.age
+             ...req.body
          }
          const result = await updateUser(data);
          return res.status(200).json(result)

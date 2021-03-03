@@ -13,7 +13,6 @@ module.exports = async (req, res) => {
           id: doc._doc._id,
           completed: doc._doc.completed
         }
-          
         }) 
       return res.status(200).json(response);
     } catch (error) {

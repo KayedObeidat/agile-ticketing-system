@@ -9,10 +9,7 @@ const {updateTask} = require('../../services/taskService')
          }
          const data = {
              id: req.params.id,
-             title: req.body.completed,
-             description: req.body.description,
-             status: req.body.status,
-             assignee: req.body.assignee
+             ...req.body
 
          }
          const result = await updateTask(data);

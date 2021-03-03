@@ -1,4 +1,5 @@
 const { body, validationResult } = require('express-validator');
+const Project = require('../../models/project');
 const {updateProject} = require('../../services/projectService')
 
  module.exports = async (req, res) => {
@@ -9,7 +10,7 @@ const {updateProject} = require('../../services/projectService')
          }
          const data = {
              id: req.params.id,
-             completed: req.body.completed
+             ...req.body
          }
          const result = await updateProject(data);
          return res.status(200).json(result)
