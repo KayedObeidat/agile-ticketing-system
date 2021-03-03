@@ -28,6 +28,7 @@ router.get(
 router.get(
     '/project/:id',
     readProjectController,
+
 )
 
 router.patch(

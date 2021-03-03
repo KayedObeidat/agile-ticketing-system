@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
             if(value.toLowerCase().includes('password')){
                 throw new Error('Your password must not contain the string password!')
             }
-        }
+        },
     },
     age: {
         type: Number,
@@ -41,12 +41,6 @@ const userSchema = new mongoose.Schema({
         }
     }
 })
-
-// userSchema.virtual('tasks', {
-//     ref: 'Task',
-//     localField: '_id',
-//     foreignField: 'owner'
-// })
 
 userSchema.pre('save', async function(next){
     const user = this

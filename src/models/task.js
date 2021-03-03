@@ -7,21 +7,23 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
+        unique: true,
+        immutable: true
     },
     description: {
         type: String,
     },
     status: {
         type: String,
-        required: true,        
+        required: true,     
     },
     creator:{
         type: String,
-        required: true
+        required: true,
+        immutable: true
     },
     assignee: {
-        type: String
+        type: String,
     }
 })
 
