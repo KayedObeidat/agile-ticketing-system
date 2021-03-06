@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const User = require('../../src/models/user')
-
+const Task = require("../../src/models/task")
+const Project = require("../../src/models/project")
 
 const userOneId = new mongoose.Types.ObjectId()
 const userOne = {
@@ -11,26 +12,41 @@ const userOne = {
     age: 55
 }
 
-const userTwoId = new mongoose.Types.ObjectId()
-const userTwo = {
-    _id: userTwoId,
-    name: 'Kayed',
-    email: 'kayed@example.com',
-    password: 'K@yed!!!',
-    age:20
+const taskOneId = mongoose.Types.ObjectId()
+const taskOne = {
+    _id: taskOneId,
+    title: "Task thirteen",
+    description: "No Desc",
+    status: "In progress",
+    creator: "Kayed",
+    assignee: "Kayed"
+}
+
+const projectOneId = mongoose.Types.ObjectId()
+const projectOne = {
+    _id: projectOneId,
+    title: "Project number one",
+    completed: false
 }
 
 
 const setupDatabase = async () => {
     await User.deleteMany() 
+    await Task.deleteMany()
+    await Project.deleteMany()
     await new User(userOne).save() 
-    await new User(userTwo).save()
+    await new Task(taskOne).save()
+    await new Project(projectOne).save()
 }
+
+
 
 module.exports = {
     userOneId,
     userOne,
-    userTwoId,
-    userTwo,
+    taskOneId,
+    taskOne,
+    projectOne,
+    projectOneId,
     setupDatabase
 }

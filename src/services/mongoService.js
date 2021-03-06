@@ -117,9 +117,7 @@ exports.readUsers = async (req, res) => {
 
 exports.readUser = async (userId) => {
   try {
-    return await User.findById(userId, {
-      completed
-    })
+    return await User.findById(userId)
   } catch (error) {
     throw error
   }
