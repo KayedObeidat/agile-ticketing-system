@@ -6,7 +6,8 @@ const projectSchema = new mongoose.Schema({
     title:{
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        immutable: true
     },
     completed: {
         type: Boolean,
@@ -14,17 +15,11 @@ const projectSchema = new mongoose.Schema({
     }
 })
 
-// projectSchema.virtual('tasks', {
-//     ref: 'Task',
-//     localField: '_id',
-//     foreignField: 'owner'
-// })
-
-// projectSchema.pre('remove', async function(next){
-//     const project = this
-//     await Task.deleteMany({owner: project._id})
-//     next()
-// })
+projectSchema.pre('remove', async function(next){
+    const project = this
+    await Task.deleteMany({postedBy: project._id})
+    next()
+})
 
 const Project = mongoose.model('Project', projectSchema)
 

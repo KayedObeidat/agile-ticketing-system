@@ -7,28 +7,23 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
+        unique: true,
+        immutable: true
     },
     description: {
         type: String,
-        required: true,
     },
     status: {
         type: String,
-        required: true,        
+        required: true,     
     },
-    // owner: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'Project'
-    // },
-    isReporter:{
-        type: Boolean,
-        required:true
+    creator:{
+        type: String,
+        required: true,
+        immutable: true
     },
-    isCreator:{
-        type: Boolean,
-        required:true
+    assignee: {
+        type: String,
     }
 })
 
